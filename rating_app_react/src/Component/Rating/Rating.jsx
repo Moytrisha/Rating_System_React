@@ -2,36 +2,35 @@ import React, { useState } from "react";
 
 function Rating () {
     
-    const imgs1 = "https://t3.ftcdn.net/jpg/01/21/64/88/360_F_121648819_ZQ0tZ6tjLzxim1SG7CQ86raBw4sglCzB.jpg"
-    const imgs2 = "https://media.istockphoto.com/id/1421948749/vector/simple-star-vector-black-line-icon-isolated.jpg?s=612x612&w=0&k=20&c=EKleOC6kVhNH7qh2S6ZcVZ4jb7zdrRnCAMtoPfgPdWQ="
-    const whitestar= [imgs2,imgs2,imgs2,imgs2,imgs2]
-    const [number,setNumber] = useState(whitestar)
+    const imgs1 = "https://static.vecteezy.com/system/resources/previews/004/903/818/non_2x/emoji-sad-face-crying-free-vector.jpg"
+    const imgs2 = "https://i.pinimg.com/736x/af/31/6c/af316c5c9febee1e974b9bf96fc66293.jpg"
+    const imgs3 = "https://static.vecteezy.com/system/resources/previews/002/592/172/non_2x/smile-emoji-pop-art-line-style-icon-free-vector.jpg"
+    const [input,setInput] = useState("")
+    const [number,setNumber] = useState()
     
 
-    function starclr(index,e) {
-        console.log()
-        let updatted=[]
-        if(e==="true") {
-        for(let i=0;i<5;i++) {
-            if(i<=index) {
-                updatted.push(imgs1)
-            }
-            else {
-                updatted.push(imgs2)
-            }
+    function emojichange(e) {
+        setInput(e)
+        if(1<=e && e<=40) {
+            setNumber(imgs1)
         }
-         
-        setNumber(updatted) 
+        else if (41<=e && e<=70) {
+            setNumber(imgs2)
+        }
+        else {
+            setNumber(imgs3)
+        }
     }
-}
+
 
     return (
         <>
-            <div>
-                {/* <input type="number" onChange={(e)=>starclr(e.target.value)}></input> */}
-                {number.map((item,index)=><img src={item} onClick={()=>starclr(index,"true")}/>) }
-                {/* {number.map((item,index)=><img src={item}/>)} */}
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" id="myRange" onChange={(e)=>emojichange(e.target.value)}/>
+                <div>{input}</div>
+                <img src={number}/>
             </div>
+
         </>
     )
 }
